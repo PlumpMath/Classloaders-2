@@ -11,22 +11,10 @@ import java.util.Map;
  */
 public class CustomClassFileClassLoader extends ClassLoader{
 
-    /**
-     * The HashMap where the classes will be cached
-     */
-    //private Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
 
-    //@Override
-   // public String toString() {
-   //     return CustomClassLoader.class.getName();
-   // }
 
     @Override
     protected Class<?> findClass(String path) throws ClassNotFoundException {
-
-        //if (classes.containsKey(name)) {
-        //    return classes.get(name);
-        //}
 
         byte[] classData = null;
 
@@ -60,10 +48,7 @@ public class CustomClassFileClassLoader extends ClassLoader{
         InputStream is = new FileInputStream(file);
 
         long length = file.length();
-        //BufferedReader in = new BufferedReader(new InputStreamReader(System.in));;
-        //ByteArrayOutputStream out = new ByteArrayOutputStream();
-
-        byte[] classData = new byte[(int)length];
+               byte[] classData = new byte[(int)length];
 
         // Считываем
         int offset = 0;
@@ -100,17 +85,4 @@ public class CustomClassFileClassLoader extends ClassLoader{
      * @throws InvocationTargetException
      * @throws IllegalArgumentException
      */
-    /*public static void main(String[] args) throws ClassNotFoundException,
-            InstantiationException, IllegalAccessException,
-            NoSuchMethodException, SecurityException, IllegalArgumentException,
-            InvocationTargetException
-    {
-        CustomClassLoader loader = new CustomClassLoader();
-        // This class should be in your application class path
-        Class<?> c = loader.findClass("net.codeslices.test.TestClass");
-        Object o = c.newInstance();
-        Method m = c.getMethod("toString");
-        System.out.println(m.invoke(o));
-    }
-    */
 }

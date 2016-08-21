@@ -11,15 +11,7 @@ import java.io.InputStreamReader;
  */
 public class CustomClassFileClassLoader_Ext extends CustomClassFileClassLoader {
 
-    /**
-     * The HashMap where the classes will be cached
-     */
-    //private Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
 
-    //@Override
-   // public String toString() {
-   //     return CustomClassLoader.class.getName();
-   // }
      public void startMultipleLoad() throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
          while (true) {
              CustomClassFileClassLoader_Ext customClassLoader_ext = new CustomClassFileClassLoader_Ext();
@@ -34,30 +26,8 @@ public class CustomClassFileClassLoader_Ext extends CustomClassFileClassLoader {
          }
      }
 
-
-    //public static void main(String[] args) throws Exception {
-    /*public void startMultipleLoad() throws Exception{
-        do {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            String path = reader.readLine();
-            Class<?> semaphoreClass = new CustomClassFileClassLoader_Ext().loadClass(path);
-            Object semaphore = semaphoreClass.newInstance();
-            //Object semaphore = new CustomClassFileClassLoader_Ext().loadClass(path).newInstance();
-            Method method = semaphoreClass.getMethod("lever");
-            method.invoke(semaphore);
-            //System.out.println("LOADED: " + foo); // Overload MyFoo#toString() for effect
-            //System.out.println("Press <ENTER> when MyFoo.class has changed");
-            //System.in.read();
-        } while (true);
-    }
-    */
-
     @Override
     protected Class<?> findClass(String path) throws ClassNotFoundException {
-
-        //if (classes.containsKey(name)) {
-        //    return classes.get(name);
-        //}
 
         byte[] classData = null;
 
@@ -72,8 +42,6 @@ public class CustomClassFileClassLoader_Ext extends CustomClassFileClassLoader {
             throw new ClassNotFoundException("Class [" + path
                     + "] could not be found", e);
         }
-
-
     }
 
     /**
@@ -91,9 +59,6 @@ public class CustomClassFileClassLoader_Ext extends CustomClassFileClassLoader {
         InputStream is = new FileInputStream(file);
 
         long length = file.length();
-        //BufferedReader in = new BufferedReader(new InputStreamReader(System.in));;
-        //ByteArrayOutputStream out = new ByteArrayOutputStream();
-
         byte[] classData = new byte[(int)length];
 
         // Считываем
@@ -116,7 +81,6 @@ public class CustomClassFileClassLoader_Ext extends CustomClassFileClassLoader {
         is.close();
 
         return classData;
-
     }
 
     /**
@@ -131,17 +95,5 @@ public class CustomClassFileClassLoader_Ext extends CustomClassFileClassLoader {
      * @throws InvocationTargetException
      * @throws IllegalArgumentException
      */
-    /*public static void main(String[] args) throws ClassNotFoundException,
-            InstantiationException, IllegalAccessException,
-            NoSuchMethodException, SecurityException, IllegalArgumentException,
-            InvocationTargetException
-    {
-        CustomClassLoader loader = new CustomClassLoader();
-        // This class should be in your application class path
-        Class<?> c = loader.findClass("net.codeslices.test.TestClass");
-        Object o = c.newInstance();
-        Method m = c.getMethod("toString");
-        System.out.println(m.invoke(o));
-    }
-    */
+
 }

@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
  */
 public class RunJavaFileClassloader {
     public static void main(String args[]) throws Exception {
-        CustomLavaFileClassLoader customClassLoader = new CustomLavaFileClassLoader();
+        CustomJavaFileClassLoader customClassLoader = new CustomJavaFileClassLoader();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String path = reader.readLine();
         // This class should be in your application class path
